@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <form action = "/fill-blanks" method = "POST">
+        <input type = "text" placeholder = "name" name ="quote">
+        <input type = "text" placeholder = "name" name ="work">
+        <input type = "number" placeholder = "Stanza Number" name = "stanzaNumber">
+        <input type = "number" placeholder = "Line in Poem" name = "poemLineNumber">
+        <button type ="submit">SUBMIT</button>
+    </form>
+
+    <ul id = "allItems">
+        <% for(let i=0; i < info.length; i++) {%>
+            <li class="item">
+                <span><%- info[i].fullQuote.split(' ').map(function(item){return item[0]}).join(' ').toLowerCase() %></span>
+                <span><%- info[i].workName %></span>
+                <span><%- info[i].stanzaAndLineNumbers %></span>
+            
+                <form action = "/checkAnswer" method = "PUT">
+                    <input type = "text" placeholder = "name" name ="newAnswer">
+                    <button type ="submit" class = "submitButton">SUBMIT</button>
+                </form>
+            </li>
+        <% } %>
+    </ul>
+    <p>Don't overthink it, boy</p>
+
+    <script src='/main.js'></script>
+</body>
+</html>
