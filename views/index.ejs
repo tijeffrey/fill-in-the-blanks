@@ -25,18 +25,20 @@
                 <span><%= info[i].stanzaAndLineNumbers %></span>
             
 
-            <% if(info[i].fullQuote === info[i].answer) {%>
-                <span class='completed'></span>
+            <% if(info[i].fullQuote != info[i].answer) {%>
+                <form action = "/checkAnswer" class = 'completed' method = "POST">
+                    <input type = "text" placeholder = "name" name ="newAnswer">
+                    <input type="hidden" name="poemLine" id="inputID" value=<%= info[i].stanzaAndLineNumbers %>>
+                    <button type ="submit" class = "submitButton">SUBMIT</button>
+                </form>
+
             <% }else{ %>
-                <span>Hello</span>
-            <% } %>    
-
-
                 <form action = "/checkAnswer" method = "POST">
                     <input type = "text" placeholder = "name" name ="newAnswer">
                     <input type="hidden" name="poemLine" id="inputID" value=<%= info[i].stanzaAndLineNumbers %>>
                     <button type ="submit" class = "submitButton">SUBMIT</button>
                 </form>
+            <% } %>    
             </li>
         <% } %>
     </ul>
