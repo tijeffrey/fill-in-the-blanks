@@ -11,35 +11,38 @@
 
 
     <form action = "/fill-blanks" method = "POST">
-        <input type = "text" placeholder = "name" name ="quote">
-        <input type = "text" placeholder = "name" name ="work">
+        <input type = "text" placeholder = "quote" name ="quote">
+        <input type = "text" placeholder = "work" name ="work">
         <input type = "number" placeholder = "Line in Poem" name = "poemLineNumber">
         <button type ="submit">SUBMIT</button>
     </form>
 
     <ul id = "allItems">
         <% for(let i=0; i < info.length; i++) {%>
-            <li class="item">
-                <span><%= info[i].fullQuote.split(' ').map(function(item){return item[0]}).join(' ').toLowerCase() %></span>
-                <span><%= info[i].workName %></span>
-                <span><%= info[i].stanzaAndLineNumbers %></span>
-            
-
-            <% if(info[i].fullQuote != info[i].answer) {%>
-                <form action = "/checkAnswer" class = 'completed' method = "POST">
-                    <input type = "text" placeholder = "name" name ="newAnswer">
-                    <input type="hidden" name="poemLine" id="inputID" value=<%= info[i].stanzaAndLineNumbers %>>
-                    <button type ="submit" class = "submitButton">SUBMIT</button>
-                </form>
-
-            <% }else{ %>
+            <% if(info[i].fullQuote === info[i].answer) {%>
+            <li class="completed">
+                    <span><%= info[i].fullQuote.split(' ').map(function(item){return item[0]}).join(' ').toLowerCase() %></span>
+                    <span><%= info[i].workName %></span>
+                    <span><%= info[i].stanzaAndLineNumbers %></span>    
                 <form action = "/checkAnswer" method = "POST">
                     <input type = "text" placeholder = "name" name ="newAnswer">
                     <input type="hidden" name="poemLine" id="inputID" value=<%= info[i].stanzaAndLineNumbers %>>
                     <button type ="submit" class = "submitButton">SUBMIT</button>
                 </form>
-            <% } %>    
             </li>
+
+            <% }else if (info[i].fullQuote != info[i].answer){ %>
+                <li>
+                    <span><%= info[i].fullQuote.split(' ').map(function(item){return item[0]}).join(' ').toLowerCase() %></span>
+                    <span><%= info[i].workName %></span>
+                    <span><%= info[i].stanzaAndLineNumbers %></span>    
+                <form action = "/checkAnswer" method = "POST">
+                    <input type = "text" placeholder = "name" name ="newAnswer">
+                    <input type="hidden" name="poemLine" id="inputID" value=<%= info[i].stanzaAndLineNumbers %>>
+                    <button type ="submit" class = "submitButton">SUBMIT</button>
+                </form>
+            </li>
+            <% } %>    
         <% } %>
     </ul>
     <p>Don't overthink it, boy</p>

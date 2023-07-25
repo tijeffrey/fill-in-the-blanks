@@ -38,15 +38,16 @@ app.post('/checkAnswer', (request, response) => {
     console.log(request.body.poemLine)
     db.collection('fill-blanks').updateOne({stanzaAndLineNumbers: request.body.poemLine},{
         $set: {
-            answer: request.body.newAnswer
+            answer: (request.body.newAnswer).toLowerCase()
         }
     },{
         sort: {_id: -1},
         upsert: false
     })
     .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+        console.log('Marked Complete');
+        console.log('Marked Complete');
+        response.render('index.ejs', {info: result});
     })
     .catch(error => console.error(error))
 })
