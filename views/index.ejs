@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-
-
-
     <form action = "/fill-blanks" method = "POST">
         <input type = "text" placeholder = "quote" name ="quote">
         <input type = "text" placeholder = "work" name ="work">
@@ -20,28 +17,36 @@
     <ul id = "allItems">
         <% for(let i=0; i < info.length; i++) {%>
             <% if(info[i].fullQuote === info[i].answer) {%>
-            <li class="completed">
+            <div  class= "completed">
+            <li>
+                <div>
                     <span><%= info[i].fullQuote.split(' ').map(function(item){return item[0]}).join(' ').toLowerCase() %></span>
                     <span><%= info[i].workName %></span>
                     <span><%= info[i].stanzaAndLineNumbers %></span>    
+                </div>
                 <form action = "/checkAnswer" method = "POST">
                     <input type = "text" placeholder = "name" name ="newAnswer">
-                    <input type="hidden" name="poemLine" id="inputID" value=<%= info[i].stanzaAndLineNumbers %>>
+                    <input type="hidden" name="poemLine" value=<%= info[i].stanzaAndLineNumbers %>>
                     <button type ="submit" class = "submitButton">SUBMIT</button>
                 </form>
             </li>
+            </div>
 
             <% }else if (info[i].fullQuote != info[i].answer){ %>
+                <div>
                 <li>
+                <div>
                     <span><%= info[i].fullQuote.split(' ').map(function(item){return item[0]}).join(' ').toLowerCase() %></span>
                     <span><%= info[i].workName %></span>
                     <span><%= info[i].stanzaAndLineNumbers %></span>    
+                </div>
                 <form action = "/checkAnswer" method = "POST">
                     <input type = "text" placeholder = "name" name ="newAnswer">
-                    <input type="hidden" name="poemLine" id="inputID" value=<%= info[i].stanzaAndLineNumbers %>>
+                    <input type="hidden" name="poemLine" value=<%= info[i].stanzaAndLineNumbers %>>
                     <button type ="submit" class = "submitButton">SUBMIT</button>
                 </form>
             </li>
+        </div>
             <% } %>    
         <% } %>
     </ul>

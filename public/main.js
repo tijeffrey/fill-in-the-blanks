@@ -6,11 +6,7 @@ Array.from(submitBtn).forEach((element)=>{
 })
 
 async function checkAnswer(){
-    // const itemText = this.parentNode.parentNode.childNodes[5].innerText;
     const itemText = this.parentNode.parentNode.childNodes[5].value;
-
-    // const itemText = document.querySelectorAll('span')
-
     console.log(itemText)
 
     try{
