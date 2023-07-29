@@ -26,7 +26,7 @@ app.get('/', (request, response) =>{
 });
 
 app.post('/fill-blanks', (request, response) =>{
-    db.collection('fill-blanks').insertOne({fullQuote: request.body.quote.toLowerCase(), workName: request.body.work, answer: '', completed: false, stanzaAndLineNumbers: request.body.poemLineNumber})
+    db.collection('fill-blanks').insertOne({fullQuote: request.body.quote.toLowerCase().trim(), answer: '', stanzaAndLineNumbers: request.body.work.trim().replace(/ /g, "_") + "_" + request.body.poemLineNumber.trim()})
     .then(result =>{
         response.redirect('/');
     })
@@ -34,11 +34,13 @@ app.post('/fill-blanks', (request, response) =>{
 })
 
 app.post('/checkAnswer', (request, response) => {
-    console.log(request.body.newAnswer)
+    console.log(request.body)
     console.log(request.body.poemLine)
+    
+
     db.collection('fill-blanks').updateOne({stanzaAndLineNumbers: request.body.poemLine},{
         $set: {
-            answer: (request.body.newAnswer).toLowerCase()
+            answer: request.body.newAnswer
         }
     },{
         sort: {_id: -1},
@@ -46,8 +48,7 @@ app.post('/checkAnswer', (request, response) => {
     })
     .then(result => {
         console.log('Marked Complete');
-        console.log('Marked Complete');
-        response.render('index.ejs', {info: result});
+        response.redirect('/')
     })
     .catch(error => console.error(error))
 })

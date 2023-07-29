@@ -1,3 +1,136 @@
 .completed{
     display: none;
 }
+
+body, ul, li, p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Header styles */
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  header h1 {
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  /* Main content styles */
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  main p {
+    margin-bottom: 20px;
+  }
+  
+  /* Form styles */
+  form {
+    margin-bottom: 20px;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  button {
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  input[type="text"],
+  input[type="number"] {
+    width: 200px;
+    margin-right: 10px;
+  }
+  
+  button {
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  /* List of items styles */
+  ul#allItems {
+    list-style: none;
+    padding: 0;
+  }
+  
+  ul#allItems li {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  
+  ul#allItems li span {
+    display: inline-block;
+  }
+  
+  ul#allItems li form {
+    display: flex;
+    align-items: center;
+  }
+  
+  ul#allItems li form input[type="text"] {
+    width: 150px;
+    margin-right: 10px;
+  }
+  
+  /* "Don't overthink it" paragraph styles */
+  p {
+    text-align: center;
+    margin-top: 20px;
+    font-style: italic;
+    color: #777;
+  }
+  
+  /* "SUBMIT" button styles */
+  button[type="submit"] {
+    margin-top: 10px;
+  }
+  
+  /* Additional spacing for the form */
+  form {
+    margin-bottom: 20px;
+  }
+  
+  /* Beautiful Colors */
+  header {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  main {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  button {
+    background-color: #007BFF;
+  }
+  
+  ul#allItems li {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
